@@ -5,7 +5,7 @@ import { AppContext } from '../context/AppContext'
 const Navbar = () => {
 
     // const[user,setUser] = useState(true);// to keep the track of user either user logged in or logged out // now this in appContext.jsx file
-    const {user} = useContext(AppContext)
+    const {user,setShowLogin} = useContext(AppContext)
     const navigate = useNavigate();
   return (
     <div className='flex items-center justify-between py-4'>
@@ -38,7 +38,7 @@ const Navbar = () => {
                 ://user logged out
                 <div className='flex items-center gap-2 sm:gap-5'>
                     <p onClick={()=>navigate('/buy')}  className='cursor-pointer'>Pricing</p>
-                    <button className='bg-zinc-800 text-white px-7  py-2 sm:px-10 text-sm rounded-full'>login</button>
+                    <button onClick={()=>setShowLogin(true )} className='bg-zinc-800 text-white px-7  py-2 sm:px-10 text-sm rounded-full'>login</button>
                 </div>
             }
             

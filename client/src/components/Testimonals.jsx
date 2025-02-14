@@ -25,8 +25,6 @@ const Testimonals = () => {
                 </div>
             ))}
         </div>
-        <div>hello</div>
-        <div>hello2</div>
     </div>
   )
 }
