@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { assets } from '../assets/assets'
 import { useContext } from 'react'
 import { AppContext } from '../context/AppContext'
+import { motion } from "motion/react"
 
 const Login = () => {
 
 
     const[state,setState] = useState('Login')
-    const {setShowLogin} = useContext(AppContext)
+    const {setShowLogin} = useContext(AppContext) // use this variable for cross the login form
 
     useEffect(()=>{
         document.body.style.overflow = 'hidden'; /// to enable the scrolling of the page
@@ -18,7 +19,11 @@ const Login = () => {
 
 
   return (
-    <div className='absolute top-0 left-0 right-0 bottom-0 z-10 backdrop-blur-sm bg-black/30 flex justify-center items-center'>
+    <motion.div className='fixed top-0 left-0 right-0 bottom-0 z-10 backdrop-blur-sm bg-black/30 flex justify-center items-center'
+    initial={{opacity:0.2,y:50}}
+    transition={{duration:0.3}}
+    whileInView={{opacity:1,y:0}}
+    viewport={{once:true}}>
         
         <form className='relative bg-white p-10 rounded-xl text-slate-500'>
             
@@ -51,7 +56,7 @@ const Login = () => {
 
         </form>
 
-    </div>
+    </motion.div>
   )
 }
 
