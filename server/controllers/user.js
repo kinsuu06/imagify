@@ -25,7 +25,7 @@ const registerUser = async(req,res) => {
         const token = jwt.sign({id:user._id},process.env.JWT_SECRET)
         
         res.json({success:true, token, user: {name: user.name}})
-    }catch(e){
+    }catch(error){
         console.log(error)
         res.json({success:fail, message:error.message})
     }
@@ -50,11 +50,23 @@ const loginUser = async(req,res) => {
             return res.json({success:false, message:'invalid Credentials'})
         }
     }
-    catch(e){
+    catch(error){
         console.log(error)
         res.json({success:fail, message: error.message})
     }
 }
 
+const userCredit = async(req,res) => {
+    try{
+        const {userId} = req.body;
+        const user = await User.findById(userId);
+        res.json({success:true, credits: user.creditBalance, user: {name:user.name}})
 
-export  {registerUser,loginUser}
+    }catch(error){
+        // console.log(error);
+        res.json({success:false,mesaage: error.message})
+    }
+}
+
+
+export  {registerUser,loginUser,userCredit}
